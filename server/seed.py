@@ -14,6 +14,8 @@ with app.app_context():
     Animal.query.delete()
     Zookeeper.query.delete()
     Enclosure.query.delete()
+    
+    # db.session.commit()
 
     zookeepers = []
     for n in range(25):
@@ -27,7 +29,7 @@ with app.app_context():
     environments = ['Desert', 'Pond', 'Ocean', 'Field', 'Trees', 'Cave', 'Cage']
 
     for n in range(25):
-        e = Enclosure(environment=rc(environments), open_to_visitors=rc([True, False]))
+        e = Enclosure(environment=rc(environments), open_to_visitor=rc([True, False]))
         enclosures.append(e)
 
     db.session.add_all(enclosures)
@@ -45,6 +47,6 @@ with app.app_context():
         a.enclosure = rc(enclosures)
         animals.append(a)
 
-    db.session.add_all(animals)
-    db.session.commit()
+    # db.session.add_all(animals)
+    # db.session.commit()
 
